@@ -1,7 +1,5 @@
 // @flow
 
-export const ACTION_CHANGE_GAME_STATUS = "ACTION_CHANGE_GAME_STATUS";
-
 export const ACTION_POSITION_CHANGED = "ACTION_POSITION_CHANGED";
 
 export const ACTION_INIT_GAME = "ACTION_INIT_GAME";
@@ -25,9 +23,11 @@ export const POSITION_OPTIONS = {
 
 export const SNAKE_PART_LENGTH = 0.05;
 
-export const CANDY_TOUCH_RADIUS = 0.01;
+export const CANDY_TOUCH_RADIUS = 0.015;
 
 export const SNAKE_TOUCH_RADIUS = 0.005;
+
+export const SNAKE_MIN_MOVE = 0.005;
 
 export const CANDY_MIN_DISTANCE = 0.02;
 

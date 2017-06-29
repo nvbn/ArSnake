@@ -26,17 +26,21 @@ export default class extends PureComponent {
   };
 
   toCandy = () => {
-    this.map.animateToCoordinate({
-      latitude: this.props.game.candy.latitude,
-      longitude: this.props.game.candy.longitude,
-    });
+    if (this.map) {
+      this.map.animateToCoordinate({
+        latitude: this.props.game.candy.latitude,
+        longitude: this.props.game.candy.longitude,
+      });
+    }
   };
 
   toHead = () => {
-    this.map.animateToCoordinate({
-      latitude: this.props.position.latitude,
-      longitude: this.props.position.longitude,
-    });
+    if (this.map) {
+      this.map.animateToCoordinate({
+        latitude: this.props.position.latitude,
+        longitude: this.props.position.longitude,
+      });
+    }
   };
 
   componentDidMount() {
@@ -92,7 +96,7 @@ export default class extends PureComponent {
           >
             {this.props.game.snake.positions.length &&
               <MapView.Polyline
-                coordinates={this.props.game.snake.positions}
+                coordinates={[this.props.position, ...this.props.game.snake.positions]}
                 strokeColor={SNAKE_COLOR}
                 strokeWidth={10}
               />}
