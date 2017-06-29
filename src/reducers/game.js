@@ -46,6 +46,11 @@ function* generatePositions(
   current: Position,
   size: number,
 ): Iterable<Position> {
+  if (previous.length && isTouched(current, previous[0])) {
+    yield* previous;
+    return;
+  }
+
   yield current;
 
   let availableDistance = size * constants.SNAKE_PART_LENGTH;
