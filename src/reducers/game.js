@@ -46,7 +46,10 @@ function* generatePositions(
   current: Position,
   size: number,
 ): Iterable<Position> {
-  if (previous.length && isTouched(current, previous[0], constants.SNAKE_MIN_MOVE)) {
+  if (
+    previous.length &&
+    isTouched(current, previous[0], constants.SNAKE_MIN_MOVE)
+  ) {
     yield* previous;
     return;
   }

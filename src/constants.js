@@ -21,6 +21,10 @@ export const POSITION_OPTIONS = {
   distanceFilter: 0.01,
 };
 
+export const FAST_POSITION_OPTIONS = {
+  enableHighAccuracy: false,
+};
+
 export const SNAKE_PART_LENGTH = 0.05;
 
 export const CANDY_TOUCH_RADIUS = 0.015;

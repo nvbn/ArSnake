@@ -96,7 +96,10 @@ export default class extends PureComponent {
           >
             {this.props.game.snake.positions.length &&
               <MapView.Polyline
-                coordinates={[this.props.position, ...this.props.game.snake.positions]}
+                coordinates={[
+                  this.props.position,
+                  ...this.props.game.snake.positions,
+                ]}
                 strokeColor={SNAKE_COLOR}
                 strokeWidth={10}
               />}

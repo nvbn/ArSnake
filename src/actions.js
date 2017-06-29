@@ -8,16 +8,16 @@ import type {
 } from "./types";
 import * as constants from "./constants";
 
+export const getInitialPosition = (): ThunkAction => dispatch =>
+  navigator.geolocation.getCurrentPosition(
+    ({ coords }) => dispatch(positionChanged(coords)),
+    error => console.warn("Can't get location", error),
+    constants.FAST_POSITION_OPTIONS,
+  );
+
 export const watchPosition = (): ThunkAction => dispatch =>
   navigator.geolocation.watchPosition(
-    ({ coords }) => {
-      const position = {
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-      };
-
-      dispatch(positionChanged(position));
-    },
+    ({ coords }) => dispatch(positionChanged(coords)),
     error => console.warn("Can't get location", error),
     constants.POSITION_OPTIONS,
   );
@@ -30,12 +30,7 @@ export const positionChanged = (position: Position): PositionChangedAction => ({
 export const startGame = (): ThunkAction => dispatch =>
   navigator.geolocation.getCurrentPosition(
     ({ coords }) => {
-      const position = {
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-      };
-
-      dispatch(initGame(position));
+      dispatch(initGame(coords));
       dispatch(
         NavigationActions.reset({
           index: 0,
@@ -58,14 +53,7 @@ export const initGame = (position: Position): InitGameAction => ({
 
 export const skipCandy = (): ThunkAction => dispatch =>
   navigator.geolocation.getCurrentPosition(
-    ({ coords }) => {
-      const position = {
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-      };
-
-      dispatch(skippedCandy(position));
-    },
+    ({ coords }) => dispatch(skippedCandy(coords)),
     error => console.warn("Can't get location", error),
     constants.POSITION_OPTIONS,
   );
