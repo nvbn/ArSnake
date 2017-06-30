@@ -18,7 +18,7 @@ export type GameStatus =
 
 export type Game = {
   +snake: Snake,
-  +candy: Position,
+  +candy: ?Position,
   +score: number,
   +status: GameStatus,
 };
@@ -36,17 +36,35 @@ export type PositionChangedAction = {
 export type InitGameAction = {
   +type: constants.ACTION_INIT_GAME,
   +position: Position,
+  +candy: Position,
 };
 
-export type SkippedCandyAction = {
-  +type: constants.ACTION_SKIPPED_CANDY,
-  +position: Position,
+export type CandyCreatedAction = {
+  +type: constants.ACTION_CANDY_CREATED,
+  +candy: Position,
+};
+
+export type SnakeTouchedHimself = {
+  +type: constants.ACTION_SNAKE_TOUCHED_HIMSELF,
+};
+
+export type SnakeTouchedCandy = {
+  +type: constants.ACTION_SNAKE_TOUCHED_CANDY,
+  +positions: Position[],
+  +candy: Position,
+};
+
+export type SnakeMoved = {
+  +type: constants.ACTION_SNAKE_MOVED,
+  +positions: Position[],
 };
 
 export type Action =
   | PositionChangedAction
   | InitGameAction
-  | SkippedCandyAction;
+  | CandyCreatedAction
+  | SnakeTouchedHimself
+  | SnakeTouchedCandy;
 
 export type Dispatch = (action: Action | ThunkAction) => any;
 

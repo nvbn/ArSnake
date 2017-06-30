@@ -17,7 +17,7 @@ export default class extends PureComponent {
     game: Game,
     position: Position,
     startGame: () => void,
-    skipCandy: () => void,
+    requestCandy: () => void,
   };
 
   state = {
@@ -67,7 +67,7 @@ export default class extends PureComponent {
           <View style={styles.headerIconsContainer}>
             <TouchableOpacity
               style={styles.headerIcon}
-              onPress={this.props.skipCandy}
+              onPress={this.props.requestCandy}
             >
               <Icon name="navigate-next" size={ICON_SIZE} />
             </TouchableOpacity>

@@ -2,7 +2,7 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Game from "../components/game";
-import { startGame, skipCandy } from "../actions";
+import { startGame, requestCandy } from "../actions";
 
 const mapStateToProps = ({ game, position }) => ({
   game,
@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       startGame,
-      skipCandy,
+      requestCandy,
     },
     dispatch,
   );
