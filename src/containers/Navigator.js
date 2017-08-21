@@ -1,4 +1,5 @@
 // @flow
+// $FlowExpectedError
 import { StackNavigator } from "react-navigation";
 import * as constants from "../constants";
 import StartMenu from "./StartMenu";

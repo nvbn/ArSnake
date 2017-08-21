@@ -2,7 +2,7 @@
 import * as constants from "../constants";
 import type { Action, Game } from "../types";
 
-export default (state: ?Game = {}, action: Action): ?Game => {
+export default (state: Game, action: Action): ?Game => {
   switch (action.type) {
     case constants.ACTION_INIT_GAME:
       return {
@@ -37,7 +37,7 @@ export default (state: ?Game = {}, action: Action): ?Game => {
         snake: {
           ...state.snake,
           positions: action.positions,
-        }
+        },
       };
     case constants.ACTION_CANDY_CREATED:
       if (state.status === constants.STATUS_IN_PROGRESS) {
@@ -50,6 +50,6 @@ export default (state: ?Game = {}, action: Action): ?Game => {
         return state;
       }
     default:
-      return state;
+      return state || null;
   }
 };

@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// $FlowExpectedError
 import { addNavigationHelpers } from "react-navigation";
 import Navigator from "./Navigator";
 

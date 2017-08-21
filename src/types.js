@@ -1,4 +1,6 @@
 // @flow
+// $FlowExpectedError
+import type { NavigationState } from "react-navigation/src/TypeDefinition";
 import * as constants from "./constants";
 
 export type Position = {
@@ -12,50 +14,51 @@ export type Snake = {
 };
 
 export type GameStatus =
-  | constants.STATUS_NOT_STARTED
-  | constants.STATUS_IN_PROGRESS
-  | constants.STATUS_OVER;
+  | typeof constants.STATUS_NOT_STARTED
+  | typeof constants.STATUS_IN_PROGRESS
+  | typeof constants.STATUS_OVER;
 
 export type Game = {
   +snake: Snake,
-  +candy: ?Position,
+  +candy: Position,
   +score: number,
   +status: GameStatus,
 };
 
 export type State = {
-  +game: ?Game,
-  +position: ?Position,
+  +game: Game,
+  +position: Position,
+  +navigation: NavigationState,
 };
 
 export type PositionChangedAction = {
-  +type: constants.ACTION_POSITION_CHANGED,
+  +type: typeof constants.ACTION_POSITION_CHANGED,
   +position: Position,
 };
 
 export type InitGameAction = {
-  +type: constants.ACTION_INIT_GAME,
+  +type: typeof constants.ACTION_INIT_GAME,
   +position: Position,
   +candy: Position,
 };
 
 export type CandyCreatedAction = {
-  +type: constants.ACTION_CANDY_CREATED,
+  +type: typeof constants.ACTION_CANDY_CREATED,
   +candy: Position,
 };
 
 export type SnakeTouchedHimself = {
-  +type: constants.ACTION_SNAKE_TOUCHED_HIMSELF,
+  +type: typeof constants.ACTION_SNAKE_TOUCHED_HIMSELF,
 };
 
 export type SnakeTouchedCandy = {
-  +type: constants.ACTION_SNAKE_TOUCHED_CANDY,
+  +type: typeof constants.ACTION_SNAKE_TOUCHED_CANDY,
   +positions: Position[],
   +candy: Position,
 };
 
 export type SnakeMoved = {
-  +type: constants.ACTION_SNAKE_MOVED,
+  +type: typeof constants.ACTION_SNAKE_MOVED,
   +positions: Position[],
 };
 

@@ -13,6 +13,9 @@ import HelpModal from "./HelpModal";
 import styles, { ICON_SIZE, SNAKE_COLOR, CANDY_COLOR } from "./styles";
 
 export default class extends PureComponent {
+  map: MapView;
+  hideHelpTimeout: ?number;
+
   props: {
     game: Game,
     position: Position,

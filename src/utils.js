@@ -5,7 +5,9 @@ import type { Position } from "./types";
 import * as constants from "./constants";
 import * as config from "../config";
 
-const generateCandyFromPlacesNearby = async (position: Position): ?Position => {
+const generateCandyFromPlacesNearby = async (
+  position: Position,
+): Promise<?Position> => {
   const positionPoint = new GeoPoint(position.latitude, position.longitude);
 
   const response = await fetch(
@@ -53,7 +55,7 @@ const generateCandyFromRandom = (position: Position): Position => {
         latitude: random(minNE.latitude(), maxNE.latitude()),
         longitude: random(minSW.longitude(), maxSW.longitude()),
       };
-    case 3:
+    default:
       return {
         latitude: random(minSW.latitude(), maxSW.latitude()),
         longitude: random(minSW.longitude(), maxSW.longitude()),
@@ -61,7 +63,7 @@ const generateCandyFromRandom = (position: Position): Position => {
   }
 };
 
-export const generateCandy = async (position: Position): Position => {
+export const generateCandy = async (position: Position): Promise<Position> => {
   const candy = await generateCandyFromPlacesNearby(position);
 
   if (candy) {

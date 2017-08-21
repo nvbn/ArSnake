@@ -1,6 +1,7 @@
 // @flow
+// $FlowExpectedError
 import { NavigationActions } from "react-navigation";
-import { isEqual } from 'lodash';
+import { isEqual } from "lodash";
 import type {
   Position,
   ThunkAction,
@@ -11,7 +12,12 @@ import type {
   SnakeMoved,
 } from "./types";
 import * as constants from "./constants";
-import { generateCandy, isTouched, generatePositions, isSnakeTouchedHimself } from "./utils";
+import {
+  generateCandy,
+  isTouched,
+  generatePositions,
+  isSnakeTouchedHimself,
+} from "./utils";
 
 // Plain actions:
 
@@ -19,7 +25,10 @@ export const snakeTouchedHimself = (): SnakeTouchedHimself => ({
   type: constants.ACTION_SNAKE_TOUCHED_HIMSELF,
 });
 
-export const snakeTouchedCandy = (positions: Position[], candy: Position): SnakeTouchedCandy => ({
+export const snakeTouchedCandy = (
+  positions: Position[],
+  candy: Position,
+): SnakeTouchedCandy => ({
   type: constants.ACTION_SNAKE_TOUCHED_CANDY,
   positions,
   candy,
@@ -55,6 +64,7 @@ export const getInitialPosition = (): ThunkAction => dispatch =>
   navigator.geolocation.getCurrentPosition(
     ({ coords }) => dispatch(positionChanged(coords)),
     error => console.warn("Can't get location", error),
+    // $FlowExpectedError
     constants.FAST_POSITION_OPTIONS,
   );
 
@@ -71,7 +81,10 @@ export const watchPosition = (): ThunkAction => (dispatch, getState) =>
 
         if (isSnakeTouchedHimself(snakePosition)) {
           dispatch(snakeTouchedHimself());
-        } else if (game.candy && isTouched(coords, game.candy, constants.CANDY_TOUCH_RADIUS)) {
+        } else if (
+          game.candy &&
+          isTouched(coords, game.candy, constants.CANDY_TOUCH_RADIUS)
+        ) {
           const candy = await generateCandy(coords);
           dispatch(snakeTouchedCandy(snakePosition, candy));
         } else if (!isEqual(game.snake.positions, snakePosition)) {
@@ -80,6 +93,7 @@ export const watchPosition = (): ThunkAction => (dispatch, getState) =>
       }
     },
     error => console.warn("Can't get location", error),
+    // $FlowExpectedError
     constants.POSITION_OPTIONS,
   );
 

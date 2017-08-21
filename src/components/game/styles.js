@@ -1,3 +1,4 @@
+// @flow
 import { StyleSheet } from "react-native";
 
 export const ICON_SIZE = 30;

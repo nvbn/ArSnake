@@ -1,6 +1,3 @@
-/**
- * Created by nvbn on 29.06.17.
- */
 // @flow
 import React, { PureComponent } from "react";
 import { Text, View, TouchableOpacity, Modal } from "react-native";

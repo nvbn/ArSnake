@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from "redux";
 import type { Store } from "redux";
 import thunk from "redux-thunk";
 import { persistStore } from "redux-persist";
-import { State } from "./types";
+import type { State } from "./types";
 import reducers from "./reducers";
 
 export default (): Store<State> => {
